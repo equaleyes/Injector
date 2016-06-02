@@ -1,5 +1,5 @@
 ![Injector Logo](http://i.imgur.com/QDhSvvm.png)
-An Android library for fas binding of views and their OnClick events
+An Android library for fast binding of views and their OnClick events
 
 ### Using Injector:
 
