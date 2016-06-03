@@ -45,3 +45,8 @@ Injector can also be used with `ViewHolders`, you can declare fields as usual th
 Injector.injectToFrom(mContainer, mView);
 Injector.injectToFrom(mContainer, mView, mListener); // Can also use View.OnClickListener
 ```
+
+### To use Injector simply add the following to build.gradle dependencies:
+```groovy
+compile 'com.equaleyes.injector:injector:1.0.0'
+```
