@@ -27,7 +27,7 @@ This will look for a `TextView` (or any subclass) with the id `R.id.custom_id`.
 If you so desire, you can use Injector to automatically bind the `OnClickListener` like this:
 
 1. Set the XML property of the view `android:clickable="true"`
-2. Define a View.OnClickListener (can also pass any class implementing this instance)
+2. Define a `View.OnClickListener` (You can also pass any class implementing this instance)
 
 The only difference is the injecting part:
 
@@ -38,7 +38,7 @@ Injector.inject(mActivity, mListener); // Again, View can be used instead of an 
 
 #### Using Injector with ViewHolders:
 
-Injector can also be used with ViewHolders, you can declare fields as usual then use the following code:
+Injector can also be used with `ViewHolders`, you can declare fields as usual then use the following code:
 ```java
 // mContainer is the class that declares any views you may want to inject
 // mView is the view containing the subviews that you want to bind to the container
