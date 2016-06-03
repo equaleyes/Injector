@@ -50,3 +50,14 @@ Injector.injectToFrom(mContainer, mView, mListener); // Can also use View.OnClic
 ```groovy
 compile 'com.equaleyes.injector:injector:1.0.0'
 ```
+
+Or if you use Maven:
+
+```
+<dependency>
+  <groupId>com.equaleyes.injector</groupId>
+  <artifactId>injector</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
+```
