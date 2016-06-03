@@ -13,21 +13,21 @@ Injector.inject(mActivity); // Can also use instance of View as a parameter if d
 
 ```
 
-This will look for a TextView(or any subclass) with the following IDs: mMyTextView, mmytextview, my_text_view and inject them to the annotated field.
+This will look for a `TextView` (or any subclass) with the following IDs: `mMyTextView`, `mmytextview`, `my_text_view` and inject them to the annotated field.
 
-#### Specifying custom id:
+#### Specifying a custom id:
 ```java
 // At field declaration
 @Inject(id=R.id.custom_id) private TextView mMyTextView;
 ```
 
-This will look for a TextView(or any subclass) with the id R.id.custom_id.
+This will look for a `TextView` (or any subclass) with the id `R.id.custom_id`.
 
-#### On click events:
-If you so desire, you can use Injector to automatically bind the OnClickListener like this:
+#### Click events:
+If you so desire, you can use Injector to automatically bind the `OnClickListener` like this:
 
-1. Set the xml property of the view `android:clickable="true"`
-2. Define an View.OnClickListener (can also pass any class implementing this instance)
+1. Set the XML property of the view `android:clickable="true"`
+2. Define a View.OnClickListener (can also pass any class implementing this instance)
 
 The only difference is the injecting part:
 
