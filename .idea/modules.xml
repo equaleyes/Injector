@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Injector.iml" filepath="$PROJECT_DIR$/Injector.iml" />
       <module fileurl="file://$PROJECT_DIR$/injector/injector.iml" filepath="$PROJECT_DIR$/injector/injector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/injectordemo/injectordemo.iml" filepath="$PROJECT_DIR$/injectordemo/injectordemo.iml" />
     </modules>
   </component>
 </project>

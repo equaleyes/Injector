@@ -1,6 +1,7 @@
 package com.equaleyes.injector;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -59,7 +60,7 @@ public class Injector {
                         view.setOnClickListener(onClickListener);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.w("INJECTOR", "Warning: Field \"" + field.getName() + "\" was not injected.");
             }
         }
     }

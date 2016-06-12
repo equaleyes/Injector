@@ -1,1 +1,1 @@
-include ':injector'
+include ':injector', ':injectordemo'
