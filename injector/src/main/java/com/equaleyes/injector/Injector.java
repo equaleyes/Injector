@@ -7,8 +7,6 @@ import android.widget.AdapterView;
 
 import java.lang.reflect.Field;
 
-import com.equaleyes.injector.Util;
-
 /**
  * Created by Žan Skamljič on 3. 08. 2015.
  */
