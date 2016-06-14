@@ -1,12 +1,11 @@
 package com.equaleyes.injector;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
 import java.lang.reflect.Field;
-
-import com.equaleyes.injector.Util;
 
 /**
  * Created by Žan Skamljič on 3. 08. 2015.
@@ -59,7 +58,7 @@ public class Injector {
                         view.setOnClickListener(onClickListener);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.w("INJECTOR", "Warning: Field \"" + field.getName() + "\" was not injected.");
             }
         }
     }
