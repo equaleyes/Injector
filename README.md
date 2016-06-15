@@ -1,6 +1,8 @@
 ![Injector Logo](http://i.imgur.com/QDhSvvm.png)
 An Android library for fast binding of views and their OnClick events
 
+[![Build Status](https://travis-ci.org/equaleyes/Injector.png?branch=master)](https://travis-ci.org/equaleyes/Injector)
+
 ### Using Injector:
 
 #### Basic usage:
