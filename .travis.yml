@@ -9,4 +9,4 @@ android:
     - build-tools-23.0.3
     
 script:
-  - gradle clean test
+  - ./gradlew clean test
