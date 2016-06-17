@@ -63,3 +63,6 @@ Or if you use Maven:
   <type>pom</type>
 </dependency>
 ```
+
+
+Author: [Žan Skamljič](https://github.com/zskamljic)
