@@ -127,7 +127,7 @@ public class InjectorTestActivity {
             @Inject private LinearLayout mAllLowerCase;
             @Inject private RelativeLayout mLowercaseLeadingM;
             @Inject private TextView mTypeMismatch;
-            @Inject(id = R.id.special_id) private TextView mTextView;
+            @Inject(R.id.special_id) private TextView mTextView;
             @Inject private Button mMyButton;
             @Inject private View mClickableView;
         }

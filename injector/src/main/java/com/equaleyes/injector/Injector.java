@@ -44,7 +44,7 @@ public class Injector {
             field.setAccessible(true);
             Inject toInject = field.getAnnotation(Inject.class);
 
-            int id = Util.findDesiredId(toInject.id(), field.getName(), owner);
+            int id = Util.findDesiredId(toInject.value(), field.getName(), owner);
 
             try {
                 if (container instanceof Activity)
@@ -54,7 +54,7 @@ public class Injector {
 
                 if (onClickListener != null) {
                     View view = (View) field.get(owner);
-                    if (view != null && view.isClickable())
+                    if (view != null && view.isClickable() && !(view instanceof AdapterView))
                         view.setOnClickListener(onClickListener);
                 }
             } catch (Exception e) {
