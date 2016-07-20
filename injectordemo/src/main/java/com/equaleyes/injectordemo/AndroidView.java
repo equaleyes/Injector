@@ -14,6 +14,7 @@ import com.equaleyes.injector.Inject;
 public class AndroidView extends RelativeLayout {
 
     @Inject private TextView text1;
+    @Inject private TextView text2;
 
     public AndroidView(Context context) {
         this(context, null);
@@ -26,6 +27,6 @@ public class AndroidView extends RelativeLayout {
     public AndroidView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, this, true);
+        LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_2, this, true);
     }
 }

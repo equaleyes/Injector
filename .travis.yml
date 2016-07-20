@@ -8,8 +8,8 @@ android:
     - platform-tools
     - tools
     - extra-android-m2repository
-    - android-23
-    - build-tools-23.0.3
+    - android-24
+    - build-tools-24.0.1
     
 script:
   - ./gradlew clean test

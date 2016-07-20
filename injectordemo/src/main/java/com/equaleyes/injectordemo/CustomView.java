@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.equaleyes.injector.Inject;
-import com.equaleyes.injector.InjectList;
 
 /**
  * Created by zan on 12.6.2016.
