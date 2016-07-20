@@ -45,18 +45,25 @@ public class Injector {
             Inject toInject = field.getAnnotation(Inject.class);
 
             int id = Util.findDesiredId(toInject.value(), field.getName(), owner);
+            if (id == -1) {
+                Log.w("INJECTOR", "Warning: Field \"" + field.getName() + "\" was not injected.");
+                return;
+            }
 
             try {
+                View view = null;
+
                 if (container instanceof Activity)
-                    field.set(owner, ((Activity) container).findViewById(id));
+                    view = ((Activity) container).findViewById(id);
                 else if (container instanceof View && !(container instanceof AdapterView))
-                    field.set(owner, ((View) container).findViewById(id));
+                    view = ((View) container).findViewById(id);
 
                 if (onClickListener != null) {
-                    View view = (View) field.get(owner);
                     if (view != null && view.isClickable() && !(view instanceof AdapterView))
                         view.setOnClickListener(onClickListener);
                 }
+
+                field.set(owner, view);
             } catch (Exception e) {
                 Log.w("INJECTOR", "Warning: Field \"" + field.getName() + "\" was not injected.");
             }
