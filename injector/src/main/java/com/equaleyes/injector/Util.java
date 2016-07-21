@@ -15,8 +15,9 @@ class Util {
     private static Map<Package, Class> mClasses = new HashMap<>();
 
     static int findDesiredId(int id, String name, Object object) {
-        if (id != -1)
+        if (id != -1) {
             return id;
+        }
 
         Set<String> candidates = getCandidates(name);
 
@@ -31,8 +32,9 @@ class Util {
         }
 
         id = getIdFromClass(idClass, candidates);
-        if (id != -1)
+        if (id != -1) {
             return id;
+        }
 
         idClass = android.R.id.class;
         id = getIdFromClass(idClass, candidates);
@@ -77,8 +79,9 @@ class Util {
 
     static Class getRClass(Package pack) {
         Class clazz;
-        if ((clazz = mClasses.get(pack)) != null)
+        if ((clazz = mClasses.get(pack)) != null) {
             return clazz;
+        }
 
         try {
             clazz = Class.forName(pack.getName() + ".R");

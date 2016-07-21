@@ -21,8 +21,9 @@ public class Injector {
     }
 
     public static void inject(Activity activity, View.OnClickListener onClickListener) {
-        for (Field field : activity.getClass().getDeclaredFields())
+        for (Field field : activity.getClass().getDeclaredFields()) {
             handleAnnotations(activity, activity, field, onClickListener);
+        }
     }
 
     public static void inject(View view) {
@@ -30,8 +31,9 @@ public class Injector {
     }
 
     public static void inject(View view, View.OnClickListener onClickListener) {
-        for (Field field : view.getClass().getDeclaredFields())
+        for (Field field : view.getClass().getDeclaredFields()) {
             handleAnnotations(view, view, field, onClickListener);
+        }
     }
 
     public static void injectToFrom(Object viewsContainer, View view) {
@@ -39,8 +41,9 @@ public class Injector {
     }
 
     public static void injectToFrom(Object viewsContainer, View view, View.OnClickListener listener) {
-        for (Field field : viewsContainer.getClass().getDeclaredFields())
+        for (Field field : viewsContainer.getClass().getDeclaredFields()) {
             handleAnnotations(viewsContainer, view, field, listener);
+        }
     }
 
     @SuppressWarnings("unchecked cast")
@@ -58,9 +61,10 @@ public class Injector {
 
             try {
                 View view = findAndSet(container, id, onClickListener);
-                if (view == null)
+                if (view == null) {
                     view = findAndSet(container,
                             Util.getAndroidRId(field.getName()), onClickListener);
+                }
 
                 field.set(owner, view);
             } catch (Exception e) {
@@ -76,15 +80,17 @@ public class Injector {
 
             for (int i = 0; i < ids.length; i++) {
                 views[i] = findAndSet(container, ids[i], onClickListener);
-                if (views[i] == null)
+                if (views[i] == null) {
                     views[i] = findAndSet(container,
                             Util.getAndroidRId(field.getName()), onClickListener);
+                }
             }
 
             try {
                 if (field.getType().isArray()) {
-                    if (field.getType() == View[].class)
+                    if (field.getType() == View[].class) {
                         field.set(owner, views);
+                    }
                     else {
                         Class type = field.getType();
 
@@ -94,15 +100,17 @@ public class Injector {
                         Class itemType = Class.forName(typeName);
                         Object array = Array.newInstance(itemType, views.length);
 
-                        for (int i = 0; i < views.length; i++)
+                        for (int i = 0; i < views.length; i++) {
                             Array.set(array, i, downcastItem(views[i]));
+                        }
 
                         field.set(owner, array);
                     }
                 } else if (field.getType() == List.class) {
                     ParameterizedType type = (ParameterizedType) field.getGenericType();
-                    if (type.getActualTypeArguments()[0] == View.class)
+                    if (type.getActualTypeArguments()[0] == View.class) {
                         field.set(owner, Arrays.asList(views));
+                    }
                     else {
                         List list = createTypedList();
                         for (View view : views)
@@ -120,10 +128,12 @@ public class Injector {
     private static View findAndSet(Object container, int id, View.OnClickListener listener) {
         View view = null;
 
-        if (container instanceof Activity)
+        if (container instanceof Activity) {
             view = ((Activity) container).findViewById(id);
-        else if (container instanceof View && !(container instanceof AdapterView))
+        }
+        else if (container instanceof View && !(container instanceof AdapterView)) {
             view = ((View) container).findViewById(id);
+        }
 
         if (listener != null) {
             if (view != null && view.isClickable() && !(view instanceof AdapterView))
