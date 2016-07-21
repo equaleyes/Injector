@@ -90,8 +90,7 @@ public class Injector {
                 if (field.getType().isArray()) {
                     if (field.getType() == View[].class) {
                         field.set(owner, views);
-                    }
-                    else {
+                    } else {
                         Class type = field.getType();
 
                         String typeName = type.getCanonicalName();
@@ -110,8 +109,7 @@ public class Injector {
                     ParameterizedType type = (ParameterizedType) field.getGenericType();
                     if (type.getActualTypeArguments()[0] == View.class) {
                         field.set(owner, Arrays.asList(views));
-                    }
-                    else {
+                    } else {
                         List list = createTypedList();
                         for (View view : views)
                             list.add(downcastItem(view));
@@ -130,8 +128,7 @@ public class Injector {
 
         if (container instanceof Activity) {
             view = ((Activity) container).findViewById(id);
-        }
-        else if (container instanceof View && !(container instanceof AdapterView)) {
+        } else if (container instanceof View && !(container instanceof AdapterView)) {
             view = ((View) container).findViewById(id);
         }
 
