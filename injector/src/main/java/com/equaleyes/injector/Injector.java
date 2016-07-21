@@ -104,7 +104,6 @@ public class Injector {
                     if (type.getActualTypeArguments()[0] == View.class)
                         field.set(owner, Arrays.asList(views));
                     else {
-
                         List list = createTypedList();
                         for (View view : views)
                             list.add(downcastItem(view));

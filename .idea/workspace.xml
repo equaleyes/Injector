@@ -9,13 +9,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6c09512-ff24-40dc-a203-3c7e10b346fd" name="Default" comment="Incremented version number">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="a6c09512-ff24-40dc-a203-3c7e10b346fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/injector/build.gradle" afterPath="$PROJECT_DIR$/injector/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/injector/injector-injector.iml" afterPath="$PROJECT_DIR$/injector/injector-injector.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/injectordemo/injectordemo.iml" afterPath="$PROJECT_DIR$/injectordemo/injectordemo.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/injector/src/main/java/com/equaleyes/injector/Injector.java" afterPath="$PROJECT_DIR$/injector/src/main/java/com/equaleyes/injector/Injector.java" />
     </list>
     <ignored path="injector.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,21 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Injector.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Injector.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/injector/src/main/java/com/equaleyes/injector/Injector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/injector/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18367347">
-              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.30612245">
+              <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -2536,9 +2522,9 @@
         <option value="$PROJECT_DIR$/injectordemo/src/main/java/com/equaleyes/injectordemo/AndroidView.java" />
         <option value="$PROJECT_DIR$/injectordemo/src/main/res/layout/item_array_view.xml" />
         <option value="$PROJECT_DIR$/injectordemo/src/main/java/com/equaleyes/injectordemo/ItemsArrayView.java" />
-        <option value="$PROJECT_DIR$/injector/src/main/java/com/equaleyes/injector/Injector.java" />
         <option value="$PROJECT_DIR$/injectordemo/src/test/java/com/equaleyes/injectordemo/InjectorTestGroup.java" />
         <option value="$PROJECT_DIR$/injector/build.gradle" />
+        <option value="$PROJECT_DIR$/injector/src/main/java/com/equaleyes/injector/Injector.java" />
       </list>
     </option>
   </component>
@@ -2802,7 +2788,13 @@
       <option name="project" value="LOCAL" />
       <updated>1469019632652</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Incremented version number">
+      <created>1469081579914</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1469081579914</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2961,18 +2953,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/injector/src/main/java/com/equaleyes/injector/Injector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/injector/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18367347">
           <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/injector/src/main/java/com/equaleyes/injector/Injector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30612245">
+          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
           <folding />
         </state>
       </provider>
