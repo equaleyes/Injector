@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/equaleyes/Injector'
     gitUrl = 'https://github.com/equaleyes/Injector.git'
 
-    libraryVersion = android.versionName //'1.1.0'
+    libraryVersion = '1.1.0'
 
     developerId = 'zskamljic'
     developerName = 'Zan Skamljic'
