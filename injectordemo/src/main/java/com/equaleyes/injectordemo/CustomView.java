@@ -23,7 +23,7 @@ public class CustomView extends RelativeLayout {
     @Inject private LinearLayout mAllLowerCase;
     @Inject private RelativeLayout mLowercaseLeadingM;
     @Inject private TextView mTypeMismatch;
-    @Inject(id = R.id.special_id) private TextView mTextView;
+    @Inject(R.id.special_id) private TextView mTextView;
     @Inject private Button mMyButton;
     @Inject private View mClickableView;
 
@@ -38,8 +38,6 @@ public class CustomView extends RelativeLayout {
     public CustomView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        LayoutInflater inflater =
-                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.activity_demo, this, true);
+        LayoutInflater.from(context).inflate(R.layout.activity_demo, this, true);
     }
 }

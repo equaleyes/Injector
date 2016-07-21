@@ -20,10 +20,31 @@ This will look for a `TextView` (or any subclass) with the following IDs: `mMyTe
 #### Specifying a custom id:
 ```java
 // At field declaration
-@Inject(id=R.id.custom_id) private TextView mMyTextView;
+@Inject(R.id.custom_id) private TextView mMyTextView;
 ```
 
 This will look for a `TextView` (or any subclass) with the id `R.id.custom_id`.
+
+#### Injecting arrays and lists:
+```
+// Using an array:
+@InjectGroup({R.id.text1, R.id.text2, R.id.text3})
+private View[] mViewArray;
+
+// Or using a list:
+@InjectGroup({R.id.text1, R.id.text2, R.id.text3})
+private List<View> mTextViewsList;
+
+// Using an array of specific type:
+@InjectGroup({R.id.text1, R.id.text2, R.id.text3})
+private TextView[] mTypedArray;
+
+// Using a list of specific type:
+@InjectGroup({R.id.text1, R.id.text2, R.id.text3})
+private List<TextView> mTextViewList;
+
+// Proceed to inject the usual way. Any click listeners will be added as usual.
+```
 
 #### Click events:
 If you so desire, you can use Injector to automatically bind the `OnClickListener` like this:
@@ -48,6 +69,8 @@ Injector.injectToFrom(mContainer, mView);
 Injector.injectToFrom(mContainer, mView, mListener); // Can also use View.OnClickListener
 ```
 
+#### If any of the views are not found they are *NOT* injected. There Injector.inject call will report a warning with a tag "INJECTOR". This allows you to use multiple xml layouts that don't necessarily have the same views.
+
 ### To use Injector simply add the following to build.gradle dependencies:
 ```groovy
 compile 'com.equaleyes.injector:injector:1.0.0'
@@ -64,5 +87,32 @@ Or if you use Maven:
 </dependency>
 ```
 
+#### Changelog
+```
+Version
+1.1.0:  - Added @InjectGroup annotation to inject arrays and lists of views
+        - Added searching for android.R.id.* if the id is not found in usual R.id.* class
+        - The views that were not injected are now reported using a warning
+        
+1.0.0:  - Initial release
+```
+
+### License
+
+```
+Copyright 2016 Equaleyes Solutions Ltd.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
 
 Author: [Žan Skamljič](https://github.com/zskamljic)
