@@ -5,7 +5,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,7 +22,7 @@ public class Injector {
 
     public static void inject(Activity activity, View.OnClickListener onClickListener) {
         for (Field field : activity.getClass().getDeclaredFields())
-            injectField(activity, activity, field, onClickListener);
+            handleAnnotations(activity, activity, field, onClickListener);
     }
 
     public static void inject(View view) {
@@ -28,7 +31,7 @@ public class Injector {
 
     public static void inject(View view, View.OnClickListener onClickListener) {
         for (Field field : view.getClass().getDeclaredFields())
-            injectField(view, view, field, onClickListener);
+            handleAnnotations(view, view, field, onClickListener);
     }
 
     public static void injectToFrom(Object viewsContainer, View view) {
@@ -37,11 +40,12 @@ public class Injector {
 
     public static void injectToFrom(Object viewsContainer, View view, View.OnClickListener listener) {
         for (Field field : viewsContainer.getClass().getDeclaredFields())
-            injectField(viewsContainer, view, field, listener);
+            handleAnnotations(viewsContainer, view, field, listener);
     }
 
-    private static void injectField(Object owner, Object container, Field field,
-                                    View.OnClickListener onClickListener) {
+    @SuppressWarnings("unchecked cast")
+    private static void handleAnnotations(Object owner, Object container, Field field,
+                                          View.OnClickListener onClickListener) {
         if (field.isAnnotationPresent(Inject.class)) {
             field.setAccessible(true);
             Inject toInject = field.getAnnotation(Inject.class);
@@ -78,10 +82,35 @@ public class Injector {
             }
 
             try {
-                if (field.getType().isArray())
-                    field.set(owner, views);
-                else if (field.getType() == List.class) {
-                    field.set(owner, Arrays.asList(views));
+                if (field.getType().isArray()) {
+                    if (field.getType() == View[].class)
+                        field.set(owner, views);
+                    else {
+                        Class type = field.getType();
+
+                        String typeName = type.getCanonicalName();
+                        typeName = typeName.substring(0, typeName.length() - 2);
+
+                        Class itemType = Class.forName(typeName);
+                        Object array = Array.newInstance(itemType, views.length);
+
+                        for (int i = 0; i < views.length; i++)
+                            Array.set(array, i, downcastItem(views[i]));
+
+                        field.set(owner, array);
+                    }
+                } else if (field.getType() == List.class) {
+                    ParameterizedType type = (ParameterizedType) field.getGenericType();
+                    if (type.getActualTypeArguments()[0] == View.class)
+                        field.set(owner, Arrays.asList(views));
+                    else {
+
+                        List list = createTypedList();
+                        for (View view : views)
+                            list.add(downcastItem(view));
+
+                        field.set(owner, list);
+                    }
                 }
             } catch (Exception e) {
                 Log.w("INJECTOR", "Warning: Field \"" + field.getName() + "\" was not injected.");
@@ -103,5 +132,13 @@ public class Injector {
         }
 
         return view;
+    }
+
+    private static <T> T downcastItem(Object item) {
+        return (T) item;
+    }
+
+    private static <T> List<T> createTypedList() {
+        return new ArrayList<>();
     }
 }

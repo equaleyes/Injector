@@ -2,6 +2,7 @@ package com.equaleyes.injectordemo;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.equaleyes.injector.InjectGroup;
 import com.equaleyes.injector.Injector;
@@ -61,6 +62,28 @@ public class InjectorTestGroup {
     }
 
     @Test
+    public void testInjectTypedArray() throws Exception {
+        // Inject the view
+        Injector.inject(mView);
+
+        // Get the declared fields
+        Field field = mView.getClass().getDeclaredField("mTypedArray");
+
+        // Make it accessible
+        field.setAccessible(true);
+        Object value = field.get(mView);
+
+        // Get the array of values
+        View[] values = (View[]) value;
+
+        assertNotNull(values);
+        assertEquals(values.length, 3);
+        assertEquals(values[0].getId(), R.id.text1);
+        assertEquals(values[1].getId(), R.id.text2);
+        assertEquals(values[2].getId(), R.id.text3);
+    }
+
+    @Test
     @SuppressWarnings("unchecked cast")
     public void testInjectList() throws Exception {
         // Inject the view
@@ -75,6 +98,30 @@ public class InjectorTestGroup {
 
         // Get the array of values
         View[] values = ((List<View>) value).toArray(new View[((List<View>) value).size()]);
+
+        assertNotNull(values);
+        assertEquals(values.length, 3);
+        assertEquals(values[0].getId(), R.id.text1);
+        assertEquals(values[1].getId(), R.id.text2);
+        assertEquals(values[2].getId(), R.id.text3);
+    }
+
+    @Test
+    @SuppressWarnings("unchecked cast")
+    public void testInjectTypedList() throws Exception {
+        // Inject the view
+        Injector.inject(mView);
+
+        // Get the declared fields
+        Field field = mView.getClass().getDeclaredField("mTypedList");
+
+        // Make it accessible
+        field.setAccessible(true);
+        Object value = field.get(mView);
+
+        // Get the array of values
+        List<TextView> list = (List<TextView>) value;
+        TextView[] values = list.toArray(new TextView[list.size()]);
 
         assertNotNull(values);
         assertEquals(values.length, 3);
