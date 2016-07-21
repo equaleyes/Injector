@@ -73,7 +73,7 @@ Injector.injectToFrom(mContainer, mView, mListener); // Can also use View.OnClic
 
 ### To use Injector simply add the following to build.gradle dependencies:
 ```groovy
-compile 'com.equaleyes.injector:injector:1.0.0'
+compile 'com.equaleyes.injector:injector:1.1.0'
 ```
 
 Or if you use Maven:
@@ -82,7 +82,7 @@ Or if you use Maven:
 <dependency>
   <groupId>com.equaleyes.injector</groupId>
   <artifactId>injector</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <type>pom</type>
 </dependency>
 ```
