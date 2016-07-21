@@ -214,7 +214,6 @@ public class InjectorTestGroup {
         }
     }
 
-
     @Test
     @SuppressWarnings("unchecked cast")
     public void testInjectListListener() throws Exception {
@@ -307,7 +306,6 @@ public class InjectorTestGroup {
             assertNull(listenerInfo);
         }
     }
-
 
     @Test
     public void testInjectExternalListListener() throws Exception {
