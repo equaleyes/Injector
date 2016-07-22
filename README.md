@@ -26,7 +26,7 @@ This will look for a `TextView` (or any subclass) with the following IDs: `mMyTe
 This will look for a `TextView` (or any subclass) with the id `R.id.custom_id`.
 
 #### Injecting arrays and lists:
-```
+```java
 // Using an array:
 @InjectGroup({R.id.text1, R.id.text2, R.id.text3})
 private View[] mViewArray;
