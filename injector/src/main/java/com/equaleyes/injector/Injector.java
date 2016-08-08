@@ -1,6 +1,9 @@
 package com.equaleyes.injector;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +19,7 @@ import java.util.List;
  * Created by Žan Skamljič on 3. 08. 2015.
  */
 public class Injector {
+
     public static void inject(Activity activity) {
         inject(activity, null);
     }
@@ -33,6 +37,12 @@ public class Injector {
     public static void inject(View view, View.OnClickListener onClickListener) {
         for (Field field : view.getClass().getDeclaredFields()) {
             handleAnnotations(view, view, field, onClickListener);
+        }
+    }
+
+    public static void injectTo(Object container, Context context) {
+        for (Field field : container.getClass().getDeclaredFields()) {
+            handleAnnotations(context, container, field, null);
         }
     }
 
@@ -60,9 +70,9 @@ public class Injector {
             }
 
             try {
-                View view = findAndSet(container, id, onClickListener);
+                View view = getDrawable(container, id, onClickListener);
                 if (view == null) {
-                    view = findAndSet(container,
+                    view = getDrawable(container,
                             Util.getAndroidRId(field.getName()), onClickListener);
                 }
 
@@ -79,9 +89,9 @@ public class Injector {
             View[] views = new View[ids.length];
 
             for (int i = 0; i < ids.length; i++) {
-                views[i] = findAndSet(container, ids[i], onClickListener);
+                views[i] = getDrawable(container, ids[i], onClickListener);
                 if (views[i] == null) {
-                    views[i] = findAndSet(container,
+                    views[i] = getDrawable(container,
                             Util.getAndroidRId(field.getName()), onClickListener);
                 }
             }
@@ -120,10 +130,79 @@ public class Injector {
             } catch (Exception e) {
                 Log.w("INJECTOR", "Warning: Field \"" + field.getName() + "\" was not injected.");
             }
+        } else if (field.isAnnotationPresent(InjectRes.class)) {
+            field.setAccessible(true);
+
+            InjectRes toInject = field.getAnnotation(InjectRes.class);
+
+            Class type = field.getType();
+
+            Context context = (Context) owner;
+            if (type.isAssignableFrom(Drawable.class)) {
+                int id = Util.findDrawableById(toInject.value(), field.getName(), context);
+
+                if (id == -1) {
+                    Log.w("INJECTOR", "Warning: Field \"" +
+                            field.getName() + "\" was not injected.");
+                    return;
+                }
+
+                try {
+                    Drawable drawable = getDrawable(context, id);
+                    if (drawable == null) {
+                        drawable = getDrawable(context, Util.getAndroidDrawable(field.getName()));
+                    }
+
+                    field.set(container, drawable);
+                } catch (Exception e) {
+                    Log.w("INJECTOR", "Warning: Field \"" +
+                            field.getName() + "\" was not injected.");
+                }
+            } else if (type.isAssignableFrom(String.class)) {
+                int id = Util.findStringById(toInject.value(), field.getName(), context);
+
+                if (id == -1) {
+                    Log.w("INJECTOR", "Warning: Field \"" +
+                            field.getName() + "\" was not injected.");
+                    return;
+                }
+
+                try {
+                    String string = context.getString(id);
+                    if (string == null) {
+                        string = context.getString(Util.getAndroidString(field.getName()));
+                    }
+
+                    field.set(container, string);
+                } catch (Exception e) {
+                    Log.w("INJECTOR", "Warning: Field \"" +
+                            field.getName() + "\" was not injected.");
+                }
+            } else if (type.isAssignableFrom(int.class)) {
+                int id = Util.findColorById(toInject.value(), field.getName(), context);
+
+                if (id == -1) {
+                    Log.w("INJECTOR", "Warning: Field \"" +
+                            field.getName() + "\" was not injected.");
+                    return;
+                }
+
+                try {
+                    int color = getColor(context, id);
+                    if (color == 0) {
+                        color = getColor(context, Util.getAndroidColor(field.getName()));
+                    }
+
+                    field.set(container, color);
+                } catch (Exception e) {
+                    Log.w("INJECTOR", "Warning: Field \"" +
+                            field.getName() + "\" was not injected.");
+                }
+            }
         }
     }
 
-    private static View findAndSet(Object container, int id, View.OnClickListener listener) {
+    private static View getDrawable(Object container, int id, View.OnClickListener listener) {
         View view = null;
 
         if (container instanceof Activity) {
@@ -138,6 +217,27 @@ public class Injector {
         }
 
         return view;
+    }
+
+    private static Drawable getDrawable(Context context, int id) {
+        Drawable drawable;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            drawable = context.getResources().getDrawable(id, context.getTheme());
+        } else {
+            drawable = context.getResources().getDrawable(id);
+        }
+
+        return drawable;
+    }
+
+    private static int getColor(Context context, int id) {
+        int color;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            color = context.getResources().getColor(id, context.getTheme());
+        } else {
+            color = context.getResources().getColor(id);
+        }
+        return color;
     }
 
     private static <T> T downcastItem(Object item) {

@@ -48,8 +48,9 @@ public class InjectorTestActivity {
         Field[] fields = mActivity.getClass().getDeclaredFields();
         for (Field field : fields) {
             // Ignore non-annotated fields
-            if (!field.isAnnotationPresent(Inject.class))
+            if (!field.isAnnotationPresent(Inject.class)) {
                 continue;
+            }
 
             // Make the field accessible and get its value
             field.setAccessible(true);
