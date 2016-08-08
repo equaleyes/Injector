@@ -73,7 +73,7 @@ Injector.injectToFrom(mContainer, mView, mListener); // Can also use View.OnClic
 
 ### To use Injector simply add the following to build.gradle dependencies:
 ```groovy
-compile 'com.equaleyes.injector:injector:1.1.0'
+compile 'com.equaleyes.injector:injector:1.2.0'
 ```
 
 Or if you use Maven:
@@ -82,7 +82,7 @@ Or if you use Maven:
 <dependency>
   <groupId>com.equaleyes.injector</groupId>
   <artifactId>injector</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -90,6 +90,8 @@ Or if you use Maven:
 #### Changelog
 ```
 Version
+1.2.0:  - Added @InjectRes annotation to inject Drawables, Strings or colors
+
 1.1.0:  - Added @InjectGroup annotation to inject arrays and lists of views
         - Added searching for android.R.id.* if the id is not found in usual R.id.* class
         - The views that were not injected are now reported using a warning
