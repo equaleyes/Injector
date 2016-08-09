@@ -70,9 +70,9 @@ public class Injector {
             }
 
             try {
-                View view = getDrawable(container, id, onClickListener);
+                View view = getView(container, id, onClickListener);
                 if (view == null) {
-                    view = getDrawable(container,
+                    view = getView(container,
                             Util.getAndroidRId(field.getName()), onClickListener);
                 }
 
@@ -89,9 +89,9 @@ public class Injector {
             View[] views = new View[ids.length];
 
             for (int i = 0; i < ids.length; i++) {
-                views[i] = getDrawable(container, ids[i], onClickListener);
+                views[i] = getView(container, ids[i], onClickListener);
                 if (views[i] == null) {
-                    views[i] = getDrawable(container,
+                    views[i] = getView(container,
                             Util.getAndroidRId(field.getName()), onClickListener);
                 }
             }
@@ -202,7 +202,7 @@ public class Injector {
         }
     }
 
-    private static View getDrawable(Object container, int id, View.OnClickListener listener) {
+    private static View getView(Object container, int id, View.OnClickListener listener) {
         View view = null;
 
         if (container instanceof Activity) {
